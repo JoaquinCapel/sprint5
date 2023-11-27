@@ -1,0 +1,45 @@
+<div class="container">
+  @for (step of steps; track $index){
+  @if($index === currentStep){
+
+  <div class="card-frases">
+    <div [style.background-color]="step.bgcolor" class="card border-0 shadow" style="width: 272px;">
+      <img [src]="step.img" [alt]="step.title" class="align-self-center"
+        style="max-width: 272px;width: 100%;max-height: 190px;height: 190px;">
+      <div class="card-body text-black bg-white" style="height: 20rem">
+        <h5 class="card-text">
+          {{step.title}}
+        </h5>
+        <p class="card-text" style="font-size: 0.7rem;">
+          {{step.description}}
+        </p>
+
+        <div class="card-buttons d-flex gap-3">
+          <!-- bolitas -->
+          <div class="dots-menu">
+            @for(step of steps; track $index){
+            @if($index === currentStep){
+            <button class="stripe btn border-0 m-0 p-0" [class.active]="$index === currentStep"></button>
+            }@else{
+            <button (click)="go()" class="dots btn border-0 p-0"></button>
+            }
+            }
+          </div>
+          <!-- arrows -->
+          <div>
+            @if(currentStep !== 0){
+            <button (click)="back()" class="btn rounded-circle btn-warning border-info btn-outline-light"><img
+                src="assets/img/arrow-left.svg" alt="arrow"></button>
+            }
+            @if(currentStep !== 2){
+            <button (click)="go()" class="btn rounded-circle btn-info border-warning btn-outline-light"><img
+                src="assets/img/arrow-right.svg" alt="arrow"></button>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+  }
+</div>
